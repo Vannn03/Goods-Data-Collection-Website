@@ -15,6 +15,7 @@ class Cart extends Model
         'namaBarang',
         'hargaBarang',
         'jumlahBarang',
+        'subTotal',
     ];
 
     public function productRelationship() {

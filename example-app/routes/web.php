@@ -35,7 +35,8 @@ Route::post('/store/to/cart/{id}', [CartController::class, 'storeToCart']) -> na
 
 // Faktur
 Route::get('/print/faktur/', [FakturController::class, 'printFaktur']) -> name('printFaktur');
-Route::post('/store/Faktur/', [FakturController::class, 'storeFaktur']) -> name('storeFaktur');
+Route::post('/store/faktur/', [FakturController::class, 'storeFaktur']) -> name('storeFaktur');
+Route::delete('/delete/barang/faktur/{id}', [FakturController::class, 'deleteBarangFaktur']) -> name('deleteBarangFaktur');
 
 // Kategori
 Route::get('/add/kategori', [KategoriController::class, 'addKategori']) -> name('addKategori');

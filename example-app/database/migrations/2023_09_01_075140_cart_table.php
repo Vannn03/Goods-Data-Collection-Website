@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('namaBarang');
             $table->integer('hargaBarang');
             $table->integer('jumlahBarang');
+            $table->integer('subTotal');
             $table->timestamps();
         });
     }

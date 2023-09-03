@@ -16,9 +16,12 @@ return new class extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
             $table->string('nomorInvoice');
+            $table->unsignedBigInteger('barangId');
+            $table->foreign('barangId') -> references('id') -> on('products') ->onUpdate('cascade')-> onDelete('cascade');
             $table->string('kategoriBarang');
             $table->string('namaBarang');
             $table->integer('jumlahBarang');
+            $table->integer('subTotal');
             $table->string('alamatPengiriman');
             $table->string('kodePos');
             $table->timestamps();

@@ -15,37 +15,37 @@
     <div class="container-lg d-flex justify-content-center align-items-center vh-100 bg-light">
         <div id="wrapper" class="border border-1 rounded-4 p-5 w-50 bg-light-subtle">
             <h1 class="text-center mb-2 fw-bold">Add to Cart</h1>
+            <hr>
             <form method="POST" action="{{ route('storeToCart', ['id' => $product->id]) }}">
                 @csrf
-                <div class="mb-3">
-                    <label for="ID" class="form-label">ID</label>
-                    <input type="text" class="form-control" name="ID"
-                        value="{{ $product->id}}" disabled>
-                </div>
 
-                <div class="mb-3">
-                    <label for="kategoriBarang" class="form-label">Kategori barang</label>
-                    <input type="text" class="form-control" name="kategoriBarang"
-                        value="{{ $product->kategoriBarang}}" disabled>
-                </div>
-
-                <div class="mb-3">
-                    <label for="namaBarang" class="form-label">Nama barang</label>
-                    <input type="text" class="form-control" name="namaBarang" value="{{ $product->namaBarang}}" disabled>
-                </div>
-
-                <div class="mb-3">
-                    <label for="hargaBarang" class="form-label">Harga barang</label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">Rp.</span>
-                        <input type="number" class="form-control" name="hargaBarang"
-                            value="{{ $product->hargaBarang}}" disabled>
-                    </div>
-                </div>
+                <ol class="list-group list-group-numbered mt-4 mb-3">
+                    <li class="list-group-item d-flex justify-content-between align-items-start p-3">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">Kategori barang</div>
+                            <input type="text" class="form-control mt-2 bg-body-secondary" name="kategoriBarang" value="{{$product->kategoriBarang}}" readonly>
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start p-3">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">Nama barang</div>
+                            <input type="text" class="form-control mt-2 bg-body-secondary" name="namaBarang" value="{{$product->namaBarang}}" readonly>
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start p-3">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">Harga barang</div>
+                            <input type="number" class="form-control mt-2 bg-body-secondary" name="hargaBarang" value="{{$product->hargaBarang}}" readonly>
+                        </div>
+                    </li>
+                </ol>
 
                 <div class="mb-5">
                     <label for="jumlahBarang" class="form-label">Jumlah barang</label>
-                    <input type="number" class="form-control" name="jumlahBarang" value="{{ $product->jumlahBarang}}" disabled>
+                    <input type="number" class="form-control" name="jumlahBarang" value="1" min="1" max="{{$product->jumlahBarang}}">
+                    @error('jumlahBarang')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="d-flex justify-content-center gap-2">

@@ -77,14 +77,14 @@ class BarangController extends Controller
             $fileName = $name;
             $request->file('fotoBarang')->storeAs('/public/products/', $fileName);
 
-            $product = Product::findOrFail($id)->update([
+            Product::findOrFail($id)->update([
                 'hargaBarang' => $request->hargaBarang,
                 'jumlahBarang' => $request->jumlahBarang,
                 'fotoBarang' => $fileName
             ]);
         }
         else {
-            $product = Product::findOrFail($id)->update([
+            Product::findOrFail($id)->update([
                 'hargaBarang' => $request->hargaBarang,
                 'jumlahBarang' => $request->jumlahBarang,
                 'fotoBarang' => ""

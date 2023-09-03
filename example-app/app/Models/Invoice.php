@@ -11,10 +11,16 @@ class Invoice extends Model
 
     protected $fillable = [
         'nomorInvoice',
+        'barangId',
         'kategoriBarang',
         'namaBarang',
         'jumlahBarang',
+        'subTotal',
         'alamatPengiriman',
         'kodePos',
     ];
+
+    public function productRelationship() {
+        return $this->hasMany(Product::class, 'barangId');
+    }
 }

@@ -4,33 +4,71 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Invoice;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class FakturController extends Controller
 {
-    public function printFaktur() {
+    public function printFaktur()
+    {
         $carts = Cart::all();
-        return view('printFaktur') -> with('carts', $carts);
+        return view('printFaktur')->with('carts', $carts);
     }
 
-    public function storeFaktur(Request $request) {
+    public function storeFaktur(Request $request)
+    {
+        // Validate the request data
         $request->validate([
-            'nomorInvoice',
-            'kategoriBarang',
-            'namaBarang',
-            'jumlahBarang' => 'numeric|unique:invoices,jumlahBarang|min:1|lte:{jumlahBarang}',
-            'alamatPengiriman' => 'required|unique:invoices,alamatPengiriman|min:10|max:100',
+            'alamatPengiriman' => 'required|min:10|max:100',
             'kodePos' => 'required|digits:5',
         ]);
 
-        Invoice::create([
-            'nomorInvoice' => $request -> nomorInvoice,
-            'kategoriBarang' => $request -> kategoriBarang,
-            'namaBarang' => $request-> namaBarang,
-            'jumlahBarang' => $request -> jumlahBarang,
-            'alamatPengiriman' => $request -> alamatPengiriman,
-            'kodePos' => $request -> kodePos,
-        ]);
+        $barangId = $request->barangId;
+        $kategoriBarang = $request->kategoriBarang;
+        $namaBarang = $request->namaBarang;
+        $jumlahBarang = $request->jumlahBarang;
+        $subTotal = $request->subTotal;
+
+        $invoices = [];
+
+        if ($barangId == 0) {
+            
+        }
+        else {
+            foreach ($barangId as $key => $value) {
+                $invoices[] = Invoice::create([
+                    'nomorInvoice' => $request->nomorInvoice,
+                    'barangId' => $value,
+                    'kategoriBarang' => $kategoriBarang[$key],
+                    'namaBarang' => $namaBarang[$key],
+                    'jumlahBarang' => $jumlahBarang[$key],
+                    'subTotal' => $subTotal[$key],
+                    'alamatPengiriman' => $request->alamatPengiriman,
+                    'kodePos' => $request->kodePos,
+                ]);
+            }
+    
+            Cart::query()->delete();
+
+        }
         return redirect('/');
+
+    }
+
+    public function deleteBarangFaktur($id)
+    {
+        // Update jumlah barang jika salah satu barang di faktur di remove (404)
+        /* 
+        $product = Product::findOrFail($id);
+        $cart = Cart::findOrFail($id);
+        
+        $product->update([
+            'jumlahBarang' => $product->jumlahBarang - $cart->jumlahBarang,
+        ]);   
+        */
+        
+        Cart::destroy($id);
+
+        return redirect('print/faktur/');
     }
 }

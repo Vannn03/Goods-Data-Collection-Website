@@ -83,7 +83,7 @@
                     @else
                         @if ($product->jumlahBarang == 0)
                             <div class="mt-3 d-flex gap-2 justify-content-end">
-                                <a href="javascript:void(0)" class="btn disabled" disabled>Save</a>
+                                <a href="javascript:void(0)" class="btn disabled" disabled>Add to cart</a>
                             </div>
                         @else
                             <div class="mt-3 d-flex gap-2 justify-content-end">

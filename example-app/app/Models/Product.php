@@ -24,4 +24,8 @@ class Product extends Model
     public function cartRelationship() {
         return $this->belongsTo(Cart::class, 'barangId', 'id');
     }
+
+    public function invoiceRelationship() {
+        return $this->belongsTo(Invoice::class, 'barangId', 'id');
+    }
 }
