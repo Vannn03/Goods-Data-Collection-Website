@@ -32,7 +32,7 @@ class FakturController extends Controller
         $invoices = [];
 
         if ($barangId == 0) {
-            
+            // Tidak terjadi apa"
         }
         else {
             foreach ($barangId as $key => $value) {
