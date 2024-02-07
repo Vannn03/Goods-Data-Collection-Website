@@ -16,7 +16,7 @@
         <div id="wrapper" class="border border-1 rounded-4 p-5 w-50 bg-light-subtle">
             <h1 class="text-center mb-2 fw-bold">WELCOME</h1>
             <hr>
-            <div method="POST" action="{{ route('register') }}">
+            <form method="POST" action="{{ route('register') }}">
                 @csrf
                 <div class="mb-3">
                     <label for="namaLengkap" class="form-label">Nama lengkap</label>
@@ -53,7 +53,7 @@
                 <button type="submit" class="btn btn-primary fw-medium w-100 my-3">Register</button>
 
                 <p class="text-center mt-2">Already have an account? <a href="{{ route('loginPage') }}">Login</a></p>
-            </div>
+            </form>
         </div>
     </div>
 
