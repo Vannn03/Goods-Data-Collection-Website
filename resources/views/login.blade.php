@@ -16,7 +16,7 @@
         <div id="wrapper" class="border border-1 rounded-4 p-5 w-50 bg-light-subtle">
             <h1 class="text-center mb-2 fw-bold">WELCOME BACK</h1>
             <hr>
-            <form method="POST" action="{{ route('login') }}">
+            <div method="POST" action="{{ route('login') }}">
                 @csrf
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
@@ -29,14 +29,15 @@
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" name="password">
                     @error('password')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <button type="submit" class="btn btn-primary fw-medium w-100 my-3">Login</button>
 
-                <p class="text-center mt-2">Don't have an account? <a href="{{route('registerPage')}}">Register</a></p>
-            </form>
+                <p class="text-center mt-2">Don't have an account? <a href="{{ route('registerPage') }}">Register</a>
+                </p>
+            </div>
         </div>
     </div>
 
